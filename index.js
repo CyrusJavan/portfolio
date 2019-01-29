@@ -22,6 +22,10 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+app.get('*', function (req, res, next) {
+  res.status(404).render('404')
+});
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
