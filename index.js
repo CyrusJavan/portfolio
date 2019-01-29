@@ -31,7 +31,9 @@ app.use(limiter)
 app.use(express.static(path.join(__dirname, 'vidjot/public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Sub apps are used as middleware
 app.use('/vidjot', require('./vidjot/app').app);
+app.use('/storybooks', require('./storybooks/app').app);
 
 //Handlebars middleware
 app.engine('handlebars', exphbs({
