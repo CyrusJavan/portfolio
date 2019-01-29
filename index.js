@@ -8,6 +8,10 @@ app.use(express.static(path.join(__dirname, 'vidjot/public')));
 
 app.use('/vidjot', require('./vidjot/app').app);
 
+app.get('/', (req, res) => {
+  res.render('index')
+})
+
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });
