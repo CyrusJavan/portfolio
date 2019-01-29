@@ -19,7 +19,11 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('portfolio/index')
+})
+
+app.get('/projects', (req, res) => {
+  res.render('portfolio/projects')
 })
 
 app.get('*', function (req, res, next) {
