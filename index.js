@@ -3,7 +3,29 @@ const path = require('path')
 const app = express()
 const exphbs = require('express-handlebars')
 const helmet = require('helmet')
+const RateLimit = require('express-rate-limit');
+const MongoStore = require('rate-limit-mongo');
 const port = process.env.PORT || 5000;
+
+
+const db = require('./vidjot/config/database')
+// Rate Limiting, connected to mongo to avoid having to hold the 
+// list of incoming IPs in memory
+const windowMs = 5 * 60 * 1000 // 5 minutes
+var limiter = new RateLimit({
+  store: new MongoStore({
+    uri: db.mongoURI,
+    collectionName: 'expressRateRecords',
+    user: 'cjavan',
+    password: '44Tanganyika!',
+    expireTimeMs: windowMs
+  }),
+  max: 250,
+  windowMs: windowMs,
+  message: "Too many requests from this IP. This is just a demo app on a piece of free cloud space."
+});
+
+app.use(limiter)
 
 // Static folder
 app.use(express.static(path.join(__dirname, 'vidjot/public')));
