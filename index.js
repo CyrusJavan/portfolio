@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const exphbs = require('express-handlebars')
+const helmet = require('helmet')
 const port = process.env.PORT || 5000;
 
 // Static folder
@@ -17,6 +18,9 @@ app.engine('handlebars', exphbs({
   partialsDir: 'views/portfolio/partials'
 }));
 app.set('view engine', 'handlebars');
+
+// Helmet sets security HTTP headers
+app.use(helmet())
 
 app.get('/', (req, res) => {
   res.render('portfolio/index')

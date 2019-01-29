@@ -20,9 +20,10 @@ require('./config/passport')(passport);
 
 // Express Session middleware
 app.use(session({
-  secret: 'secret',
+  secret: 'v3ryW311Pr073c73d',
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  name: 'sessionId'
 }));
 
 // passport middleware
