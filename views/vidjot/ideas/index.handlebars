@@ -1,0 +1,16 @@
+<div class="text-center">
+  <a href="/vidjot/ideas/add" class="btn btn-primary btn-block mb-2">Add Video Idea</a>
+</div>
+{{#each ideas}} 
+<div class="card card-body mb-2">
+  <h4>{{title}}</h4>
+  <p>{{details}}</p>
+  <a href="/vidjot/ideas/edit/{{id}}" class="btn btn-dark brn-block mb-2">Edit</a>
+  <form method="POST" action="/vidjot/ideas/{{id}}?_method=DELETE">
+  <input type="hidden" name="_method" value="DELETE">
+  <input type="submit" class="btn btn-danger btn-block" value="Delete">
+  </form>
+</div>
+{{else}}
+  <p> You have no video ideas listed :(</p>
+{{/each}}

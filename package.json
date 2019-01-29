@@ -1,0 +1,16 @@
+{
+  "name": "cyrusjavan-site",
+  "version": "1.0.0",
+  "description": "Personal Site",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Cyrus Javan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-subdomain": "^1.0.5",
+    "vhost": "^3.0.2"
+  }
+}
