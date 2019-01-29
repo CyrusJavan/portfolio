@@ -59,7 +59,7 @@ mongoose.connect(db.mongoURI, {
   useNewUrlParser: true
 }) 
   .then(() => {
-    console.log('MongoDB Connected');
+    console.log('VidJot:: MongoDB Connected');
 })
   .catch((err) => {
     console.log(err);    

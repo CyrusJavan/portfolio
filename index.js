@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const compression = require('compression')
 const app = express()
 const exphbs = require('express-handlebars')
 const helmet = require('helmet')
@@ -45,6 +46,9 @@ app.set('view engine', 'handlebars');
 
 // Helmet sets security HTTP headers
 app.use(helmet())
+
+// Use gzip compresion to improve performance
+app.use(compression())
 
 app.get('/', (req, res) => {
   res.render('portfolio/index')

@@ -12,4 +12,18 @@ router.get('/google/callback',
     res.redirect('/storybooks/dashboard');
   })
 
+router.get('/verify', (req, res) => {
+  if(req.user){
+    console.log(req.user)
+  }
+  else{
+    console.log('NOt Auth')
+  }
+})
+
+router.get('/logout', (req, res) => {
+  req.logout()
+  req.redirect('/storybooks')
+})
+
 module.exports = router;
