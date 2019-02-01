@@ -4,10 +4,14 @@ const exphbs = require('express-handlebars')
 const passport = require('passport')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const path = require('path')
+const markdown = require('helper-markdown')
 
 // Load Models
 require('./models/User')
+require('./models/Story')
 
 // Passport Config
 require('./config/passport')(passport)
@@ -15,6 +19,7 @@ require('./config/passport')(passport)
 // Load Routes
 const auth = require('./routes/auth')
 const index = require('./routes/index')
+const stories = require('./routes/stories')
 
 // Connect to Mongoose
 const keys = require('./config/keys')
@@ -28,6 +33,15 @@ mongoose.connect(keys.mongoURI, {
     console.log(err);    
   });
 
+// Handlebars Helpers
+const {
+  truncate,
+  stripTags,
+  formatDate,
+  select,
+  editIcon
+} = require('./helpers/hbs')
+
 const app = express()
 
 
@@ -35,12 +49,28 @@ app.set('views', path.join(__dirname, './views'))
 // Handlebars middleware
 app.engine('handlebars', exphbs({
   defaultLayout: 'main',
-  layoutsDir: './storybooks/views/layouts'
+  layoutsDir: './storybooks/views/layouts',
+  partialsDir: './storybooks/views/partials',
+  helpers: {
+    truncate: truncate,
+    stripTags: stripTags,
+    markdown: markdown(),
+    formatDate:formatDate,
+    select:select,
+    editIcon:editIcon
+  }
 }))
 app.set('view engine', 'handlebars')
 
 // Cookie Parser middleware
 app.use(cookieParser())
+
+// Body Parser Middleware
+app.use(bodyParser.urlencoded({ extended:false }))
+app.use(bodyParser.json())
+
+// Method override middleware
+app.use(methodOverride('_method'))
 
 // Express Session middleware
 app.use(session({
@@ -67,5 +97,6 @@ app.use((req, res, next) => {
 // Use routes
 app.use('/auth', auth)
 app.use('/', index)
+app.use('/stories', stories)
 
 module.exports.app = app

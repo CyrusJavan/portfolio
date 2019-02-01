@@ -23,7 +23,7 @@ router.get('/verify', (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.logout()
-  req.redirect('/storybooks')
+  res.redirect('/storybooks')
 })
 
 module.exports = router;
