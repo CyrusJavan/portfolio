@@ -8,6 +8,7 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const path = require('path')
 const markdown = require('helper-markdown')
+const MongoStore = require('connect-mongo')(session)
 
 // Load Models
 require('./models/User')
@@ -76,7 +77,8 @@ app.use(methodOverride('_method'))
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new MongoStore({mongooseConnection: mongoose.connection})
 }))
 
 // passport middleware
