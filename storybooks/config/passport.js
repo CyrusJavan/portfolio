@@ -15,6 +15,8 @@ module.exports = function(passport){
   }, (request, accessToken, refreshToken, profile, done) => {
     // console.log(accessToken)
     // console.log(profile)
+    process.nextTick(function()
+  {
     var image = profile.photos[0].value
     image = image.substring(0, image.indexOf('?'))
     const newUser = {
@@ -43,6 +45,7 @@ module.exports = function(passport){
         })
       }
     })
+  })
   })
   )
   // From Passport Docs
