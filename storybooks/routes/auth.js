@@ -14,7 +14,10 @@ router.get('/google/callback',
     req.session.save((err) => {
       if (err) console.log(err)
       console.log('Session saved redirecting to /storybooks/dashboard')
-      res.redirect('/storybooks/dashboard');
+      req.login(req.user, () => {
+        res.redirect('/storybooks/dashboard');
+      })
+      
     })
   })
 
