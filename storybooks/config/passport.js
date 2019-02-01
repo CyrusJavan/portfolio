@@ -23,6 +23,7 @@ module.exports = function(passport){
       lastName: profile.name.familyName,
       image:image
     }
+    console.log(`Authenticating User ${newUser}`)
     // See if User has authenticated before
     User.findOne({
       googleID: newUser.googleID
