@@ -9,7 +9,9 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/storybooks' }),
   (req, res) => {
-    res.redirect('/storybooks/dashboard');
+    req.session.save(() => {
+      res.redirect('/storybooks/dashboard');
+    })
   })
 
 router.get('/verify', (req, res) => {
