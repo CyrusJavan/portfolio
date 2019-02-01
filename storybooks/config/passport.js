@@ -9,7 +9,7 @@ module.exports = function(passport){
   passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: '/storybooks/auth/google/callback'//,
+    callbackURL: `${keys.domain}/storybooks/auth/google/callback`//,
     //proxy: true
   }, (accessToken, refreshToken, profile, done) => {
     // console.log(accessToken)
