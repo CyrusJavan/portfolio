@@ -27,6 +27,7 @@
     "passport-google-oauth20": "^1.0.0",
     "passport-local": "^1.0.0",
     "rate-limit-mongo": "^1.0.3",
+    "moment": "^2.24.0",
     "remove-markdown": "^0.3.0"
   }
 }
