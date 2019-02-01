@@ -9,6 +9,7 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/storybooks' }),
   (req, res) => {
+    console.log('Google Login Successful')
     res.redirect('/storybooks/dashboard');
   })
 
@@ -19,6 +20,7 @@ router.get('/verify', (req, res) => {
   else{
     console.log('NOt Auth')
   }
+  res.redirect('/storybooks')
 })
 
 router.get('/logout', (req, res) => {
