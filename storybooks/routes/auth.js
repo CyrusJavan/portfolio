@@ -9,7 +9,6 @@ router.get('/google', passport.authenticate('google', {
 router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/storybooks' }),
   (req, res) => {
-    console.log('Google Login Successful')
     res.redirect('/storybooks/dashboard');
   })
 
