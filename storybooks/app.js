@@ -64,20 +64,21 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars')
 
 
-
+// Cookie Parser middleware
+app.use(cookieParser('keyboard cat'))
 // Body Parser Middleware
-app.use(bodyParser.urlencoded({ extended:false }))
+app.use(bodyParser.urlencoded({ extended:true }))
 app.use(bodyParser.json())
 
 // Method override middleware
 app.use(methodOverride('_method'))
-// Cookie Parser middleware
-app.use(cookieParser('keyboard cat'))
+
 // Express Session middleware
 app.use(session({
   secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false,
+  proxy: true,
+  resave: true,
+  saveUninitialized: true,
   store: new MongoStore({mongooseConnection: mongoose.connection})
 }))
 
