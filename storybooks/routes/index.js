@@ -10,7 +10,7 @@ router.get('/', ensureGuest, (req, res) => {
 })
 
 router.get('/dashboard', ensureAuthenticated, (req, res) => {
-  console.log('User is Authenticated!')
+  console.log(req.user)
   Story.find({user:req.user.id})
     .then(stories => {
       res.render('index/dashboard', {stories:stories})
