@@ -9,9 +9,10 @@ module.exports = function(passport){
   passport.use(new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: `${keys.domain}/storybooks/auth/google/callback`//,
+    callbackURL: `${keys.domain}/storybooks/auth/google/callback`,
+    passReqToCallback: true
     //proxy: true
-  }, (accessToken, refreshToken, profile, done) => {
+  }, (request, accessToken, refreshToken, profile, done) => {
     // console.log(accessToken)
     // console.log(profile)
     var image = profile.photos[0].value
