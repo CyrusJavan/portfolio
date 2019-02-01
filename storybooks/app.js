@@ -63,8 +63,7 @@ app.engine('handlebars', exphbs({
 }))
 app.set('view engine', 'handlebars')
 
-// Cookie Parser middleware
-app.use(cookieParser())
+
 
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended:false }))
@@ -72,7 +71,8 @@ app.use(bodyParser.json())
 
 // Method override middleware
 app.use(methodOverride('_method'))
-
+// Cookie Parser middleware
+app.use(cookieParser('keyboard cat'))
 // Express Session middleware
 app.use(session({
   secret: 'keyboard cat',
@@ -90,6 +90,8 @@ app.use((req, res, next) => {
   res.locals.user = req.user || null
   next()
 })
+
+
 
 // var port = process.env.PORT || 5000
 // app.listen(port, () => {
