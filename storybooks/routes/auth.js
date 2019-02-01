@@ -10,7 +10,8 @@ router.get('/google/callback',
   passport.authenticate('google', { failureRedirect: '/storybooks' }),
   (req, res) => {
     console.log(req.session)
-    req.session.save(() => {
+    req.session.save((err) => {
+      if (err) console.log(err)
       res.redirect('/storybooks/dashboard');
     })
   })
