@@ -76,8 +76,8 @@ app.use(methodOverride('_method'))
 // Express Session middleware
 app.use(session({
   secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: false,
+  resave: true,
+  saveUninitialized: true,
   store: new MongoStore({mongooseConnection: mongoose.connection})
 }))
 
