@@ -32,6 +32,12 @@ app.use(limiter)
 app.use(express.static(path.join(__dirname, 'vidjot/public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Helmet sets security HTTP headers
+app.use(helmet())
+
+// Use gzip compresion to improve performance
+app.use(compression())
 // Sub apps are used as middleware
 app.use('/vidjot', require('./vidjot/app').app);
 app.use('/storybooks', require('./storybooks/app').app);
@@ -44,11 +50,7 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
-// Helmet sets security HTTP headers
-app.use(helmet())
 
-// Use gzip compresion to improve performance
-app.use(compression())
 
 app.get('/', (req, res) => {
   res.render('portfolio/index')

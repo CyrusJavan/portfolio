@@ -11,12 +11,12 @@ router.get('/google/callback',
   (req, res) => {
     console.log(req.session)
     console.log(`googleCallback: ${req.user}`)
-    // req.session.save((err) => {
-    //   if (err) console.log(err)
-    //   console.log('Session saved redirecting to /storybooks/dashboard')
-    //   res.redirect('/storybooks/dashboard');
-    // })
-    res.redirect('/storybooks/dashboard');
+    console.log(`isAuthenticated:${req.isAuthenticated()}`)
+    req.session.save((err) => {
+      if (err) console.log(err)
+      //console.log('Session saved redirecting to /storybooks/dashboard')
+      res.redirect('/storybooks/dashboard');
+    })
   })
 
 router.get('/verify', (req, res) => {
