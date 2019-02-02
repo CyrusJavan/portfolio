@@ -26,12 +26,12 @@ const stories = require('./routes/stories')
 const keys = require('./config/keys')
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true
-}) 
+})
   .then(() => {
     console.log('StoryBooks:: MongoDB Connected');
-})
+  })
   .catch((err) => {
-    console.log(err);    
+    console.log(err);
   });
 
 // Handlebars Helpers
@@ -56,9 +56,9 @@ app.engine('handlebars', exphbs({
     truncate: truncate,
     stripTags: stripTags,
     markdown: markdown(),
-    formatDate:formatDate,
-    select:select,
-    editIcon:editIcon
+    formatDate: formatDate,
+    select: select,
+    editIcon: editIcon
   }
 }))
 app.set('view engine', 'handlebars')
@@ -67,7 +67,7 @@ app.set('view engine', 'handlebars')
 // Cookie Parser middleware
 //app.use(cookieParser('keyboard cat'))
 // Body Parser Middleware
-app.use(bodyParser.urlencoded({ extended:false }))
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Method override middleware
@@ -81,11 +81,11 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
-  store: new MongoStore({mongooseConnection: mongoose.connection}),
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
   cookie: {
     secure: false,
     sameSite: 'lax',
-    httpOnly:false
+    httpOnly: false
   }
 }))
 
@@ -99,7 +99,14 @@ app.use((req, res, next) => {
   next()
 })
 
-
+// Allow CORS
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200')
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, X-AUTHENTICATION, X-IP, Content-Type, Accept')
+  res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+  next()
+})
 
 // var port = process.env.PORT || 5000
 // app.listen(port, () => {
