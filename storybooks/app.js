@@ -65,7 +65,7 @@ app.set('view engine', 'handlebars')
 
 
 // Cookie Parser middleware
-app.use(cookieParser('keyboard cat'))
+//app.use(cookieParser('keyboard cat'))
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended:false }))
 app.use(bodyParser.json())
@@ -73,12 +73,19 @@ app.use(bodyParser.json())
 // Method override middleware
 app.use(methodOverride('_method'))
 
+
+app.set('trust proxy', 1)
 // Express Session middleware
 app.use(session({
+  name: 'storybooks',
   secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true,
-  store: new MongoStore({mongooseConnection: mongoose.connection})
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({mongooseConnection: mongoose.connection}),
+  cookie: {
+    secure: false,
+    sameSite: 'lax'
+  }
 }))
 
 // passport middleware
