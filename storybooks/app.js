@@ -67,7 +67,7 @@ app.set('view engine', 'handlebars')
 // Cookie Parser middleware
 app.use(cookieParser('keyboard cat'))
 // Body Parser Middleware
-app.use(bodyParser.urlencoded({ extended:true }))
+app.use(bodyParser.urlencoded({ extended:false }))
 app.use(bodyParser.json())
 
 // Method override middleware
@@ -76,8 +76,7 @@ app.use(methodOverride('_method'))
 // Express Session middleware
 app.use(session({
   secret: 'keyboard cat',
-  proxy: true,
-  resave: true,
+  resave: false,
   saveUninitialized: true,
   store: new MongoStore({mongooseConnection: mongoose.connection})
 }))
