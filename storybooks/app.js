@@ -81,6 +81,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
+  proxy: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
   cookie: {
     secure: false,
