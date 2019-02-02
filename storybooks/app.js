@@ -84,7 +84,8 @@ app.use(session({
   store: new MongoStore({mongooseConnection: mongoose.connection}),
   cookie: {
     secure: false,
-    sameSite: 'lax'
+    sameSite: 'lax',
+    httpOnly:false
   }
 }))
 
