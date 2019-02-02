@@ -77,7 +77,7 @@ app.use(methodOverride('_method'))
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   store: new MongoStore({mongooseConnection: mongoose.connection})
 }))
 
