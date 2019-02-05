@@ -82,7 +82,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.set('trust proxy', 1)
+//app.set('trust proxy', 1)
 // Express Session middleware
 app.use(session({
   name: 'storybooks',
