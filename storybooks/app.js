@@ -88,11 +88,10 @@ app.use(session({
   name: 'storybooks',
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
   cookie: {
     secure: false,
-    sameSite: 'lax',
     httpOnly: false
   }
 }))
