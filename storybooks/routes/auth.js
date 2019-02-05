@@ -14,7 +14,7 @@ router.get('/google/callback',
     console.log(`isAuthenticated:${req.isAuthenticated()}`)
     req.session.save((err) => {
       if (err) console.log(err)
-      console.log('Saving Session')
+      console.log(`Saving Session Err = ${err}`)
       res.redirect('/storybooks/dashboard');
     })
   })
