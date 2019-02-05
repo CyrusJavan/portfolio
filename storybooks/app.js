@@ -87,12 +87,11 @@ app.set('trust proxy', 1)
 app.use(session({
   name: 'storybooks',
   secret: 'keyboard cat',
-  resave: false,
+  resave: true,
   saveUninitialized: true,
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
   cookie: {
-    secure: false,
-    httpOnly: false
+    httpOnly: true
   }
 }))
 
