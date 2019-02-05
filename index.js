@@ -26,7 +26,7 @@ var limiter = new RateLimit({
   message: "Too many requests from this IP. This is just a demo app on a piece of free cloud space."
 });
 
-app.use(limiter)
+//app.use(limiter)
 
 // Static folder
 app.use(express.static(path.join(__dirname, 'vidjot/public')));
@@ -34,10 +34,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Helmet sets security HTTP headers
-app.use(helmet())
+//app.use(helmet())
 
 // Use gzip compresion to improve performance
-app.use(compression())
+//app.use(compression())
+
 // Sub apps are used as middleware
 app.use('/vidjot', require('./vidjot/app').app);
 app.use('/storybooks', require('./storybooks/app').app);
