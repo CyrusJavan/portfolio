@@ -10,7 +10,7 @@ module.exports = function(passport){
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
     callbackURL: `${keys.domain}/storybooks/auth/google/callback`//,
-    proxy: true
+    //proxy: true
   }, (accessToken, refreshToken, profile, done) => {
     // console.log(accessToken)
     // console.log(profile)
