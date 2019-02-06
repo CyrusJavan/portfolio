@@ -7,7 +7,7 @@ router.get('/google', function(req,res,next) {
 })
 
 router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/storybooks' }),
+  passport.authenticate('google', { failureRedirect: '/storybooks/damn' }),
   (req, res) => {
     console.log(req.session)
     console.log(`googleCallback: ${req.user}`)
