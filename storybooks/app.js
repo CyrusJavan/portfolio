@@ -67,7 +67,7 @@ app.set('view engine', 'handlebars')
 // Cookie Parser middleware
 //app.use(cookieParser('keyboard cat'))
 // Body Parser Middleware
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // Method override middleware
