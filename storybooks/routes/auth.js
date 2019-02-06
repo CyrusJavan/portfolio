@@ -7,17 +7,17 @@ router.get('/google', function(req,res,next) {
 })
 
 router.get('/google/callback',
-  passport.authenticate('google', { failureRedirect: '/storybooks/damn' }),
+  passport.authenticate('google', { failureRedirect: '/storybooks' }),
   (req, res) => {
     console.log(req.session)
     console.log(`googleCallback: ${req.user}`)
     console.log(`isAuthenticated:${req.isAuthenticated()}`)
-    res.redirect('/storybooks/dashboard')
-    // req.session.save((err) => {
-    //   if (err) console.log(err)
-    //   console.log(`Saving Session Err = ${err}`)
-    //   res.redirect('/storybooks/dashboard');
-    // })
+    //res.redirect('/storybooks/dashboard')
+    req.session.save((err) => {
+      if (err) console.log(err)
+      console.log(`Saving Session Err = ${err}`)
+      res.redirect('/storybooks/dashboard');
+    })
   })
 
 router.get('/verify', (req, res) => {
