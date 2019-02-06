@@ -12,11 +12,12 @@ router.get('/google/callback',
     console.log(req.session)
     console.log(`googleCallback: ${req.user}`)
     console.log(`isAuthenticated:${req.isAuthenticated()}`)
-    req.session.save((err) => {
-      if (err) console.log(err)
-      console.log(`Saving Session Err = ${err}`)
-      res.redirect('/storybooks/dashboard');
-    })
+    res.redirect('/storybooks/dashboard')
+    // req.session.save((err) => {
+    //   if (err) console.log(err)
+    //   console.log(`Saving Session Err = ${err}`)
+    //   res.redirect('/storybooks/dashboard');
+    // })
   })
 
 router.get('/verify', (req, res) => {
