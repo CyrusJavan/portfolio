@@ -6,8 +6,6 @@ const exphbs = require('express-handlebars')
 const helmet = require('helmet')
 const RateLimit = require('express-rate-limit');
 const MongoStore = require('rate-limit-mongo');
-const port = process.env.PORT || 5000;
-
 
 const db = require('./vidjot/config/database')
 // Rate Limiting, connected to mongo to avoid having to hold the 
@@ -65,6 +63,11 @@ app.get('*', function (req, res, next) {
   res.status(404).render('404')
 });
 
-app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+//const PORT = process.env.PORT || 8080;
+//const HOST = process.env.HOST || '0.0.0.0';
+const PORT = 8080;
+const HOST = '0.0.0.0';
+
+app.listen(PORT, HOST, () => {
+  console.log(`Server started on port ${PORT}`);
 });
