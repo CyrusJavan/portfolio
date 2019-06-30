@@ -21,7 +21,6 @@
     "express-session": "^1.15.6",
     "font-awesome": "^4.7.0",
     "helmet": "^3.15.0",
-    "helper-markdown": "^1.0.0",
     "method-override": "^3.0.0",
     "moment": "^2.24.0",
     "mongoose": "^5.4.7",
