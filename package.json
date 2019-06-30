@@ -30,5 +30,8 @@
     "passport-local": "^1.0.0",
     "rate-limit-mongo": "^1.0.3",
     "remove-markdown": "^0.3.0"
+  },
+  "devDependencies": {
+    "jest": "^24.1.0"
   }
 }
